@@ -11,8 +11,8 @@ CORS(app,
 @app.route('/', methods = ["GET","POST", "OPTIONS"])
 @cross_origin(origin = "*", headers = ["Content-Type", "Authorization"])
 def hello():
-    if flask.request.method == "OPTIONS":
-        return _build_cors_preflight_response()
+    # if flask.request.method == "OPTIONS":
+    #     return _build_cors_preflight_response()
     return flask.jsonify(prediction = ("bird"), probability = (0.69))
 
 def _build_cors_preflight_response():
