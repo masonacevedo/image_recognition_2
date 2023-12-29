@@ -1,8 +1,9 @@
 # app.py
 from flask import Flask
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app, origins= ["masonacevedo.com"])
 @app.route('/')
 def hello():
     return 'Hello, World!'
