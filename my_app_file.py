@@ -9,6 +9,7 @@ CORS(app,
      allow_headers=["Content-Type","multipart/form-data","Authorization"],
      supports_credentials=True)
 @app.route('/', methods = ["GET","POST", "OPTIONS"])
+@cross_origin(origin = "*", headers = ["Content-Type", "Authorization"])
 def hello():
     if flask.request.method == "OPTIONS":
         return _build_cors_preflight_response()
