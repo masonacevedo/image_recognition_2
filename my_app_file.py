@@ -6,4 +6,4 @@ app = Flask(__name__)
 CORS(app, origins= ["masonacevedo.com"])
 @app.route('/')
 def hello():
-    return 'Hello, World!'
+    return flask.jsonify(prediction = ("bird"), probability = (0.69))
