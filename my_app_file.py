@@ -10,7 +10,4 @@ CORS(app, origins= ["masonacevedo.com", "https://masonacevedo.com", "https://www
 @app.route('/', methods = ["POST", "OPTIONS"])
 def hello():
     response = flask.jsonify(prediction = ("bird"), probability = (0.69))
-    response.headers['Access-Control-Allow-Origin'] = "*"
-    response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
-    response.headers['Access-Control-Allow-Methods'] = "GET,PUT,POST,DELETE,OPTIONS"
     return response
