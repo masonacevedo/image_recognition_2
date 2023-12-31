@@ -16,7 +16,8 @@ def hello():
     if request.method == "POST":
         image = request.files.get("user_image")
         print("IMAGE:", image)
-        response_dict = {"POST request":12.0}
+        response_dict = {"prediction":"bird", 
+                         "probability":12}
         response = flask.jsonify(response_dict)
         return response
     
