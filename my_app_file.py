@@ -11,6 +11,8 @@ CORS(app, origins= ["masonacevedo.com", "https://masonacevedo.com", "https://www
 # CORS(app)
 @app.route('/', methods = ["GET", "POST", "OPTIONS"])
 def hello():
-    print("request_method:", request.method)
+    if request.method == "POST":
+        image = request.files.get("user_image")
+        print("IMAGE:", image)
     response = flask.jsonify(prediction = ("bird"), probability = (0.69))
     return response
