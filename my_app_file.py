@@ -15,7 +15,10 @@ CORS(app, origins= ["masonacevedo.com", "https://masonacevedo.com", "https://www
 def hello():
     if request.method == "POST":
         image = request.files.get("user_image")
-        print("IMAGE:", image)
+        print("\n\n\ntype(image):", type(image),"\n\n\n\n")
+        if image is None:
+            return flask.jsonify(error = "No image provided! Please upload an image!"), 400
+        
         response_dict = {"prediction":"bird", 
                          "probability":12}
         response = flask.jsonify(response_dict)
