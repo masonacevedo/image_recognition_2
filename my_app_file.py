@@ -49,18 +49,18 @@ def classifyImage(web_image_plugin_obj):
     # fast_ai_model_with_normalization_with_architecture.pkl
     
     
-    model_path = pathlib.Path("fast_ai_model_with_normalization_with_architecture.pkl")
-    model = load_learner(model_path)
+    # model_path = pathlib.Path("fast_ai_model_with_normalization_with_architecture.pkl")
+    # model = load_learner(model_path)
 
     # LOAD THE MODEL THIS WAY IF YOU'RE DEVELOPING ON A WINDOWS MACHINE INSTEAD OF A LINUX MACHINE!
-    # posix_backup = pathlib.PosixPath
-    # try:
-    #     pathlib.PosixPath = pathlib.WindowsPath
-    #     model_path = pathlib.Path("fast_ai_model_with_normalization_with_architecture.pkl")
+    posix_backup = pathlib.PosixPath
+    try:
+        pathlib.PosixPath = pathlib.WindowsPath
+        model_path = pathlib.Path("fast_ai_model_with_normalization_with_architecture.pkl")
     
-    #     model = load_learner(model_path)
-    # finally:
-    #     pathlib.PosixPath = posix_backup
+        model = load_learner(model_path)
+    finally:
+        pathlib.PosixPath = posix_backup
 
 
 
