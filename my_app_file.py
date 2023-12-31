@@ -5,7 +5,6 @@ from flask_cors import CORS
 from flask import request
 from PIL import Image
 from fastai.vision.all import *
-import pickle
 import pathlib
 
 app = Flask(__name__)
