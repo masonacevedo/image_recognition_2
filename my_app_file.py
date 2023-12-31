@@ -4,7 +4,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask import request
 from PIL import Image
-from fastai.vision.all import *
+from fastai.vision.all import load_learner, Resize, Normalize, PILImage
 import pathlib
 
 app = Flask(__name__)
