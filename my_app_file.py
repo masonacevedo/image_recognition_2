@@ -9,10 +9,20 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024  # 10 MB
 CORS(app, origins= ["masonacevedo.com", "https://masonacevedo.com", "https://www.masonacevedo.com", "www.masonacevedo.com"])
 # CORS(app)
-@app.route('/', methods = ["GET", "POST", "OPTIONS"])
+
+# @app.route('/', methods = ["GET", "POST", "OPTIONS"])
+@app.route('/', methods = ["GET", "POST"])
 def hello():
     if request.method == "POST":
         image = request.files.get("user_image")
         print("IMAGE:", image)
-    response = flask.jsonify(prediction = ("bird"), probability = (0.69))
-    return response
+        response_dict = {"POST request":12.0}
+        response = flask.jsonify(response_dict)
+        return response
+    
+    elif request.method == "GET":
+        response_dict = {"GET request": 11.0}
+        response = flask.jsonify(response_dict)
+        return response
+    else:
+        raise Exception("It should be impossible to get here!")
