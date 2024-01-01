@@ -67,7 +67,7 @@ def classifyImage(web_image_plugin_obj):
     prediction = model.predict(normalized_resized_image)
     print("prediction[0]:", prediction[0])
     print("prediction[2].max():", prediction[2].max())
-    return {"prediction": prediction[0], "probability": float(prediction[2].max())}
+    return {"prediction": prediction[0], "probability": 100 * float(prediction[2].max())}
 
 # if __name__ == "__main__":
 #     app.run(debug= True)
