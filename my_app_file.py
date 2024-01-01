@@ -24,7 +24,11 @@ def hello():
         if image is None:
             return flask.jsonify(error = "No image provided! Please upload an image!"), 400
         
+        
         web_image_plugin_obj = Image.open(image)
+        if web_image_plugin_obj.mode == "RGBA":
+            web_image_plugin_obj = web_image_plugin_obj.convert('RGB')
+        
         web_image_plugin_obj.save("image.jpg")
         
         results_dict = classifyImage(web_image_plugin_obj)
