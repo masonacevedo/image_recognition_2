@@ -48,7 +48,7 @@ def classifyImage(web_image_plugin_obj):
     print("Got to the model loading part...")
     # fast_ai_model_with_normalization_with_architecture.pkl
     
-    
+    # LOAD THE MODEL THIS WAY IF YOU'RE DEPLOYING IN A LINUX SERVER!
     # model_path = pathlib.Path("fast_ai_model_with_normalization_with_architecture.pkl")
     # model = load_learner(model_path)
 
