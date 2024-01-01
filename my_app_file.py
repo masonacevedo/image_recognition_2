@@ -53,25 +53,31 @@ def classifyImage(web_image_plugin_obj):
     # fast_ai_model_with_normalization_with_architecture.pkl
     
     # LOAD THE MODEL THIS WAY IF YOU'RE DEPLOYING IN A LINUX SERVER!
-    model_path = pathlib.Path("fast_ai_model_with_normalization_with_architecture.pkl")
-    model = load_learner(model_path)
+    # model_path = pathlib.Path("fast_ai_model_with_normalization_with_architecture.pkl")
+    # model = load_learner(model_path)
 
     # LOAD THE MODEL THIS WAY IF YOU'RE DEVELOPING ON A WINDOWS MACHINE INSTEAD OF A LINUX MACHINE!
-    # posix_backup = pathlib.PosixPath
-    # try:
-    #     pathlib.PosixPath = pathlib.WindowsPath
-    #     model_path = pathlib.Path("fast_ai_model_with_normalization_with_architecture.pkl")
+    posix_backup = pathlib.PosixPath
+    try:
+        pathlib.PosixPath = pathlib.WindowsPath
+        model_path = pathlib.Path("fast_ai_model_with_normalization_with_architecture.pkl")
     
-    #     model = load_learner(model_path)
-    # finally:
-    #     pathlib.PosixPath = posix_backup
+        model = load_learner(model_path)
+    finally:
+        pathlib.PosixPath = posix_backup
 
 
 
     prediction = model.predict(normalized_resized_image)
-    print("prediction[0]:", prediction[0])
-    print("prediction[2].max():", prediction[2].max())
-    return {"prediction": prediction[0], "probability": 100 * float(prediction[2].max())}
+    if prediction[0] == "bird":
+        return {"prediction": prediction[0], "probability": 100 * float(prediction[2].max())}
+    else:
+        bird_index = 2
+        bird_probability = prediction[2][bird_index]
+        print("bird_probability:", bird_probability)
+        prob_not_bird = sum(prediction[2]) - bird_probability
+        print("prob_nor_bird:", prob_not_bird)
+        return {"prediction": prediction[0], "probability": 100 * float(prob_not_bird)}
 
 # if __name__ == "__main__":
 #     app.run(debug= True)
